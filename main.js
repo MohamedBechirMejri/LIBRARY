@@ -1,12 +1,18 @@
+let myLibrary = [];
 class Book {
   constructor(title, author, numOfPages, readOrNot) {
     this.title = title;
     this.author = author;
     this.numOfPages = numOfPages;
     this.readOrNot = readOrNot === "yes" ? "read" : "not read yet";
-    this.info = () => {
-      return `${title} by ${author}, ${numOfPages} pages, ${readOrNot}`;
-    };
+  }
+  info() {
+    return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.readOrNot}`;
   }
 }
-let theHobbit = new Book("The Hobbit", "J.R.R", "555", "yes");
+
+function addBookToLibrary(title, author, numOfPages, readOrNot) {
+  myLibrary.push(new Book(title, author, numOfPages, readOrNot));
+}
+
+console.log(myLibrary);
