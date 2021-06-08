@@ -12,8 +12,8 @@ class Book {
 }
 
 function addBookToLibrary(title, author, numOfPages, readPages) {
-    myLibrary.push(new Book(title, author, numOfPages, readPages));
-    console.log(myLibrary);
+  myLibrary.push(new Book(title, author, numOfPages, readPages));
+  console.log(myLibrary);
 }
 
 //* Code starts here
@@ -34,4 +34,8 @@ submitButton.addEventListener("click", () => {
     totalPages.value,
     readPages.value
   );
+  titleInput.value = "";
+  authorInput.value = "";
+  totalPages.value = "";
+  readPages.value = "";
 });
