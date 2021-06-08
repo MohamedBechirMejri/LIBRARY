@@ -6,7 +6,10 @@
     <title>LIBRARY</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="primer.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
+    />
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
@@ -15,7 +18,12 @@
       <input class="form-control" type="text" placeholder="Title" />
       <input class="form-control" type="text" placeholder="Author" />
       <input class="form-control" type="number" placeholder="Number Of Pages" />
-      <input class="form-control" type="number" placeholder="Pages Read" />
+      <input
+        class="form-control"
+        type="number"
+        placeholder="Pages Read"
+        min="0"
+      />
       <button class="btn">Add Book</button>
     </form>
     <div id="books-section"></div>
