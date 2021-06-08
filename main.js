@@ -1,18 +1,19 @@
 let myLibrary = [];
 class Book {
-  constructor(title, author, numOfPages, readOrNot) {
+  constructor(title, author, numOfPages, readPages) {
     this.title = title;
     this.author = author;
     this.numOfPages = numOfPages;
-    this.readOrNot = readOrNot === "yes" ? "read" : "not read yet";
+    this.readPages = readPages;
   }
   info() {
-    return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.readOrNot}`;
+    return `${this.title} by ${this.author},finished ${this.readPages} pages,out of ${this.numOfPages}`;
   }
 }
 
-function addBookToLibrary(title, author, numOfPages, readOrNot) {
-  myLibrary.push(new Book(title, author, numOfPages, readOrNot));
+function addBookToLibrary(title, author, numOfPages, readPages) {
+    myLibrary.push(new Book(title, author, numOfPages, readPages));
+    console.log(myLibrary);
 }
 
 //* Code starts here
@@ -26,6 +27,11 @@ const submitButton = document.getElementById("submit-button");
 
 // funcs
 
-submitButton.addEventListener('click', () => {
-    addBookToLibrary(titleInput.value, authorInput.value, totalPages.value, readPages.value)
-})
+submitButton.addEventListener("click", () => {
+  addBookToLibrary(
+    titleInput.value,
+    authorInput.value,
+    totalPages.value,
+    readPages.value
+  );
+});
