@@ -15,16 +15,25 @@
   <body>
     <form>
       <h1 class="title">My Library</h1>
-      <input class="input" type="text" placeholder="Title" />
-      <input class="input" type="text" placeholder="Author" />
+      <input class="input" type="text" placeholder="Title" id="title-input" />
+      <input class="input" type="text" placeholder="Author" id="author-input" />
       <input
         class="input"
         type="number"
         placeholder="Number Of Pages"
         min="0"
+        id="number-of-pages"
       />
-      <input class="input" type="number" placeholder="Pages Read" min="0" />
-      <button class="button is-primary is-outlined">Add Book</button>
+      <input
+        class="input"
+        type="number"
+        placeholder="Pages Read"
+        min="0"
+        id="pages-read"
+      />
+      <button class="button is-primary is-outlined" id="submit-button">
+        Add Book
+      </button>
       <div class="select">
         <label for="sort">Sort Books:</label>
         <select name="sort" id="sort-books">
