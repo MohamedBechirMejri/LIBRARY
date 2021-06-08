@@ -15,4 +15,17 @@ function addBookToLibrary(title, author, numOfPages, readOrNot) {
   myLibrary.push(new Book(title, author, numOfPages, readOrNot));
 }
 
-console.log(myLibrary);
+//* Code starts here
+
+// vars
+const titleInput = document.getElementById("title-input");
+const authorInput = document.getElementById("author-input");
+const totalPages = document.getElementById("number-of-pages");
+const readPages = document.getElementById("pages-read");
+const submitButton = document.getElementById("submit-button");
+
+// funcs
+
+submitButton.addEventListener('click', () => {
+    addBookToLibrary(titleInput.value, authorInput.value, totalPages.value, readPages.value)
+})
