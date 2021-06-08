@@ -8,28 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
     />
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
     <form>
-      <h1>My Library</h1>
-      <input class="form-control" type="text" placeholder="Title" />
-      <input class="form-control" type="text" placeholder="Author" />
+      <h1 class="title">My Library</h1>
+      <input class="input" type="text" placeholder="Title" />
+      <input class="input" type="text" placeholder="Author" />
       <input
-        class="form-control"
+        class="input"
         type="number"
         placeholder="Number Of Pages"
         min="0"
       />
-      <input
-        class="form-control"
-        type="number"
-        placeholder="Pages Read"
-        min="0"
-      />
-      <button class="btn">Add Book</button>
+      <input class="input" type="number" placeholder="Pages Read" min="0" />
+      <button class="button">Add Book</button>
     </form>
     <div id="books-section"></div>
     <script src="main.js"></script>
