@@ -67,10 +67,10 @@ footer {
   align-items: center;
 }
 #empty {
-    margin-top: 50%;
-    font-size: xxx-large;
-    font-weight: bolder;
-    opacity: .5;
+  margin-top: 50%;
+  font-size: xxx-large;
+  font-weight: bolder;
+  opacity: 0.5;
 }
 .book {
   display: flex;
@@ -94,8 +94,8 @@ h5 {
 }
 
 .comp-rem-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
 }
