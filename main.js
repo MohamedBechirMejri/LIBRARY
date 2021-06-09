@@ -26,12 +26,12 @@ const readPages = document.getElementById("pages-read");
 const submitButton = document.getElementById("submit-button");
 
 const booksSection = document.getElementById("books-section");
-const div = document.createElement("div");
 
 // funcs
 
 function updateLibrary() {
   myLibrary.forEach((book) => {
+    const div = document.createElement("div");
     div.classList.add("book");
     div.innerHTML = `<img
           src="https://i.pinimg.com/originals/7f/3c/fa/7f3cfa1073a5484fc6899f4c47e008fb.jpg"
@@ -49,9 +49,9 @@ function updateLibrary() {
         <div class="pages-read">
           <button class="button">+</button>
           <h5>
-            <p class="pages-read">${readPages}</p>
+            <p class="pages-read">${book.readPages}</p>
             /
-            <p class="total">${totalPages}</p>
+            <p class="total">${book.numOfPages}</p>
           </h5>
           <button class="button">-</button>
         </div>
