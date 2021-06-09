@@ -13,7 +13,6 @@ class Book {
 
 function addBookToLibrary(title, author, numOfPages, readPages) {
   myLibrary.push(new Book(title, author, numOfPages, readPages));
-  console.log(myLibrary);
 }
 
 //* Code starts here
@@ -34,6 +33,7 @@ function updateLibrary() {
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
     div.classList.add("book");
+    div.setAttribute("data-book-name", book.title);
     div.innerHTML = `<img
           src="https://i.pinimg.com/originals/7f/3c/fa/7f3cfa1073a5484fc6899f4c47e008fb.jpg"
           alt="harry potter cover"
