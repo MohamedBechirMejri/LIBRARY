@@ -1,4 +1,21 @@
+// vars
 let myLibrary = [];
+
+const titleInput = document.getElementById("title-input");
+const authorInput = document.getElementById("author-input");
+const totalPages = document.getElementById("number-of-pages");
+const readPages = document.getElementById("pages-read");
+const submitButton = document.getElementById("submit-button");
+
+const booksSection = document.getElementById("books-section");
+
+let removeButtons = document.querySelectorAll(
+  `[class="remove button is-danger"]`
+);
+
+//const selectedBook = document.querySelector(`[data-book-name="${h}"]`);
+
+// funcs
 class Book {
   constructor(title, author, numOfPages, readPages) {
     this.title = title;
@@ -14,19 +31,6 @@ class Book {
 function addBookToLibrary(title, author, numOfPages, readPages) {
   myLibrary.push(new Book(title, author, numOfPages, readPages));
 }
-
-//* Code starts here
-
-// vars
-const titleInput = document.getElementById("title-input");
-const authorInput = document.getElementById("author-input");
-const totalPages = document.getElementById("number-of-pages");
-const readPages = document.getElementById("pages-read");
-const submitButton = document.getElementById("submit-button");
-
-const booksSection = document.getElementById("books-section");
-
-// funcs
 
 function updateLibrary() {
   booksSection.innerHTML = "";
@@ -58,10 +62,14 @@ function updateLibrary() {
         </div>
         <div class="comp-rem-buttons">
           <button class="completed button is-primary">completed</button>
-          <button class="remove button is-danger">remove</button>
+          <button class="remove button is-danger" data-book-name="${book.title}">remove</button>
         </div>`;
     booksSection.appendChild(div);
   });
+  removeButtons = document.querySelectorAll(
+    `[class="remove button is-danger"]`
+  );
+  removeBook();
 }
 
 submitButton.addEventListener("click", () => {
@@ -77,3 +85,13 @@ submitButton.addEventListener("click", () => {
   readPages.value = "";
   updateLibrary();
 });
+
+function removeBook() {
+  removeButtons.forEach((button) => {
+    let buttonData = button.getAttribute("data-book-name");
+    button.addEventListener("click", () => {
+      myLibrary = myLibrary.filter((book) => book.title !== buttonData);
+      updateLibrary();
+    });
+  });
+}
