@@ -12,6 +12,9 @@ const booksSection = document.getElementById("books-section");
 let removeButtons = document.querySelectorAll(
   `[class="remove button is-danger"]`
 );
+let completeButtons = document.querySelectorAll(
+  `[class="completed button is-primary"]`
+);
 
 //const selectedBook = document.querySelector(`[data-book-name="${h}"]`);
 
@@ -61,7 +64,7 @@ function updateLibrary() {
           <button class="button">-</button>
         </div>
         <div class="comp-rem-buttons">
-          <button class="completed button is-primary">completed</button>
+          <button class="completed button is-primary" data-book-name="${book.title}">completed</button>
           <button class="remove button is-danger" data-book-name="${book.title}">remove</button>
         </div>`;
     booksSection.appendChild(div);
@@ -69,6 +72,10 @@ function updateLibrary() {
   removeButtons = document.querySelectorAll(
     `[class="remove button is-danger"]`
   );
+  completeButtons = document.querySelectorAll(
+    `[class="completed button is-primary"]`
+  );
+  completeBook();
   removeBook();
 }
 
@@ -91,6 +98,20 @@ function removeBook() {
     let buttonData = button.getAttribute("data-book-name");
     button.addEventListener("click", () => {
       myLibrary = myLibrary.filter((book) => book.title !== buttonData);
+      updateLibrary();
+    });
+  });
+}
+
+function completeBook() {
+  completeButtons.forEach((button) => {
+    let buttonData = button.getAttribute("data-book-name");
+    button.addEventListener("click", () => {
+      myLibrary.forEach((book) => {
+        if (book.title === buttonData) {
+          book.readPages = book.numOfPages;
+        }
+      });
       updateLibrary();
     });
   });
