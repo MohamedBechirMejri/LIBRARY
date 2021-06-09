@@ -7,6 +7,8 @@ const totalPages = document.getElementById("number-of-pages");
 const readPages = document.getElementById("pages-read");
 const submitButton = document.getElementById("submit-button");
 
+const dropDown = document.getElementById("sort-books");
+
 const booksSection = document.getElementById("books-section");
 
 let removeButtons = document.querySelectorAll(
@@ -68,7 +70,11 @@ function updateLibrary() {
           <button class="completed button is-primary" data-book-name="${book.title}">completed</button>
           <button class="remove button is-danger" data-book-name="${book.title}">remove</button>
         </div>`;
-    booksSection.appendChild(div);
+    if (dropDown.options[dropDown.selectedIndex].text === "Latest First") {
+      booksSection.prepend(div);
+    } else {
+      booksSection.append(div);
+    }
   });
   removeButtons = document.querySelectorAll(
     `[class="remove button is-danger"]`
