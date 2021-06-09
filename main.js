@@ -16,7 +16,8 @@ let completeButtons = document.querySelectorAll(
   `[class="completed button is-primary"]`
 );
 
-//const selectedBook = document.querySelector(`[data-book-name="${h}"]`);
+let increaseButtons = document.querySelectorAll(`[class="button increase"]`);
+let decreaseButtons = document.querySelectorAll(`[class="button decrease"]`);
 
 // funcs
 class Book {
@@ -42,8 +43,8 @@ function updateLibrary() {
     div.classList.add("book");
     div.setAttribute("data-book-name", book.title);
     div.innerHTML = `<img
-          src="https://i.pinimg.com/originals/7f/3c/fa/7f3cfa1073a5484fc6899f4c47e008fb.jpg"
-          alt="harry potter cover"
+          src="https://www.hodder.co.uk/wp-content/uploads/2018/07/missingbook.png"
+          alt="${book.title} cover"
         />
         <h2>
           <span class="booktitle"
@@ -55,13 +56,13 @@ function updateLibrary() {
         </h2>
 
         <div class="pages-read">
-          <button class="button">+</button>
+          <button class="button increase" data-book-name="${book.title}">+</button>
           <h5>
             <p class="pages-read">${book.readPages}</p>
             /
             <p class="total">${book.numOfPages}</p>
           </h5>
-          <button class="button">-</button>
+          <button class="button decrease" data-book-name="${book.title}">-</button>
         </div>
         <div class="comp-rem-buttons">
           <button class="completed button is-primary" data-book-name="${book.title}">completed</button>
@@ -75,8 +76,12 @@ function updateLibrary() {
   completeButtons = document.querySelectorAll(
     `[class="completed button is-primary"]`
   );
+  increaseButtons = document.querySelectorAll(`[class="button increase"]`);
+  decreaseButtons = document.querySelectorAll(`[class="button decrease"]`);
+
   completeBook();
   removeBook();
+  increaseDecrease();
 }
 
 submitButton.addEventListener("click", () => {
@@ -110,6 +115,32 @@ function completeBook() {
       myLibrary.forEach((book) => {
         if (book.title === buttonData) {
           book.readPages = book.numOfPages;
+        }
+      });
+      updateLibrary();
+    });
+  });
+}
+
+function increaseDecrease() {
+  increaseButtons.forEach((button) => {
+    let buttonData = button.getAttribute("data-book-name");
+    button.addEventListener("click", () => {
+      myLibrary.forEach((book) => {
+        if (book.title === buttonData) {
+          book.readPages++;
+        }
+      });
+      updateLibrary();
+    });
+  });
+
+  decreaseButtons.forEach((button) => {
+    let buttonData = button.getAttribute("data-book-name");
+    button.addEventListener("click", () => {
+      myLibrary.forEach((book) => {
+        if (book.title === buttonData) {
+          book.readPages--;
         }
       });
       updateLibrary();
