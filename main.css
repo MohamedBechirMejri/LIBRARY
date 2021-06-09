@@ -66,6 +66,12 @@ footer {
   justify-content: space-evenly;
   align-items: center;
 }
+#empty {
+    margin-top: 50%;
+    font-size: xxx-large;
+    font-weight: bolder;
+    opacity: .5;
+}
 .book {
   display: flex;
   text-align: center;
