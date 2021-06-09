@@ -5,6 +5,7 @@ const titleInput = document.getElementById("title-input");
 const authorInput = document.getElementById("author-input");
 const totalPages = document.getElementById("number-of-pages");
 const readPages = document.getElementById("pages-read");
+const coverLink = document.getElementById("cover-link");
 const submitButton = document.getElementById("submit-button");
 
 const dropDown = document.getElementById("sort-books");
@@ -28,19 +29,23 @@ if (localStorage.length !== 0) {
 }
 
 class Book {
-  constructor(title, author, numOfPages, readPages) {
+  constructor(title, author, numOfPages, readPages, imageLink) {
     this.title = title;
     this.author = author;
     this.numOfPages = numOfPages;
     this.readPages = readPages;
+    this.imageLink =
+      imageLink ||
+      "https://www.hodder.co.uk/wp-content/uploads/2018/07/missingbook.png";
   }
+  // Keeping this because TOP asked for it but it's useless
   info() {
     return `${this.title} by ${this.author},finished ${this.readPages} pages,out of ${this.numOfPages}`;
   }
 }
 
-function addBookToLibrary(title, author, numOfPages, readPages) {
-  myLibrary.push(new Book(title, author, numOfPages, readPages));
+function addBookToLibrary(title, author, numOfPages, readPages, imageLink) {
+  myLibrary.push(new Book(title, author, numOfPages, readPages, imageLink));
 }
 
 function updateLibrary() {
@@ -50,8 +55,9 @@ function updateLibrary() {
     const div = document.createElement("div");
     div.classList.add("book");
     div.setAttribute("data-book-name", book.title);
+
     div.innerHTML = `<img
-          src="https://www.hodder.co.uk/wp-content/uploads/2018/07/missingbook.png"
+          src="${book.imageLink}"
           alt="${book.title} cover"
         />
         <h2>
@@ -101,12 +107,14 @@ submitButton.addEventListener("click", () => {
     titleInput.value,
     authorInput.value,
     totalPages.value,
-    readPages.value
+    readPages.value,
+    coverLink.value
   );
   titleInput.value = "";
   authorInput.value = "";
   totalPages.value = "";
   readPages.value = "";
+  coverLink.value = "";
   updateLibrary();
 });
 
