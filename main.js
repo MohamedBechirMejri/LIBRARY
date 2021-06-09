@@ -30,6 +30,7 @@ const booksSection = document.getElementById("books-section");
 // funcs
 
 function updateLibrary() {
+  booksSection.innerHTML = "";
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
     div.classList.add("book");
