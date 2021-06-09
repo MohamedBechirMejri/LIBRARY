@@ -22,6 +22,11 @@ let increaseButtons = document.querySelectorAll(`[class="button increase"]`);
 let decreaseButtons = document.querySelectorAll(`[class="button decrease"]`);
 
 // funcs
+
+if (localStorage.length !== 0) {
+  myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+}
+
 class Book {
   constructor(title, author, numOfPages, readPages) {
     this.title = title;
@@ -40,6 +45,7 @@ function addBookToLibrary(title, author, numOfPages, readPages) {
 
 function updateLibrary() {
   booksSection.innerHTML = "";
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
     div.classList.add("book");
@@ -153,3 +159,4 @@ function increaseDecrease() {
     });
   });
 }
+updateLibrary();
