@@ -134,6 +134,7 @@ const clickSubmitButton = () => {
     updateLibrary();
 };
 
+const form = document.getElementById('form');
 function removeBook() {
     removeButtons.forEach((button) => {
         let buttonData = button.getAttribute('data-book-name');
