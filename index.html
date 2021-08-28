@@ -15,14 +15,14 @@
     </head>
 
     <body>
-        <form>
+        <form id="form">
             <h1 class="title">My Library</h1>
             <input class="input" type="text" placeholder="Title" id="title-input" required />
             <input class="input" type="text" placeholder="Author" id="author-input" required />
             <input class="input" type="number" placeholder="Number Of Pages" min="0" id="number-of-pages" required />
             <input class="input" type="number" placeholder="Pages Read (Optional)" min="0" id="pages-read" />
             <input id="cover-link" class="input" type="text" placeholder="Link to Cover Image (Optional)" />
-            <button class="button is-primary is-outlined" id="submit-button" onclick="clickSubmitButton()">
+            <button class="button is-primary is-outlined" id="submit-button">
                 Add Book
             </button>
             <div class="select">
