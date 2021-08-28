@@ -1,22 +1,22 @@
 // vars
 let myLibrary = [];
 
-const titleInput = document.getElementById("title-input");
-const authorInput = document.getElementById("author-input");
-const totalPages = document.getElementById("number-of-pages");
-const readPages = document.getElementById("pages-read");
-const coverLink = document.getElementById("cover-link");
-const submitButton = document.getElementById("submit-button");
+const titleInput = document.getElementById('title-input');
+const authorInput = document.getElementById('author-input');
+const totalPages = document.getElementById('number-of-pages');
+const readPages = document.getElementById('pages-read');
+const coverLink = document.getElementById('cover-link');
+const submitButton = document.getElementById('submit-button');
 
-const dropDown = document.getElementById("sort-books");
+const dropDown = document.getElementById('sort-books');
 
-const booksSection = document.getElementById("books-section");
+const booksSection = document.getElementById('books-section');
 
 let removeButtons = document.querySelectorAll(
-    `[class="remove button is-danger"]`
+    `[class="remove button is-danger"]`,
 );
 let completeButtons = document.querySelectorAll(
-    `[class="completed button is-primary"]`
+    `[class="completed button is-primary"]`,
 );
 
 let increaseButtons = document.querySelectorAll(`[class="button increase"]`);
@@ -25,7 +25,7 @@ let decreaseButtons = document.querySelectorAll(`[class="button decrease"]`);
 // funcs
 
 if (localStorage.length !== 0) {
-    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
 }
 
 class Book {
@@ -36,7 +36,7 @@ class Book {
         this.readPages = readPages;
         this.imageLink =
             imageLink ||
-            "https://www.hodder.co.uk/wp-content/uploads/2018/07/missingbook.png";
+            'https://www.hodder.co.uk/wp-content/uploads/2018/07/missingbook.png';
     }
     // Keeping this because TOP asked for it but it's useless
     info() {
@@ -49,12 +49,12 @@ function addBookToLibrary(title, author, numOfPages, readPages, imageLink) {
 }
 
 function updateLibrary() {
-    booksSection.innerHTML = "";
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    booksSection.innerHTML = '';
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     myLibrary.forEach((book) => {
-        const div = document.createElement("div");
-        div.classList.add("book");
-        div.setAttribute("data-book-name", book.title);
+        const div = document.createElement('div');
+        div.classList.add('book');
+        div.setAttribute('data-book-name', book.title);
 
         div.innerHTML = `<img
           src="${book.imageLink}"
@@ -82,17 +82,17 @@ function updateLibrary() {
           <button class="completed button is-primary" data-book-name="${book.title}">completed</button>
           <button class="remove button is-danger" data-book-name="${book.title}">remove</button>
         </div>`;
-        if (dropDown.options[dropDown.selectedIndex].text === "Latest First") {
+        if (dropDown.options[dropDown.selectedIndex].text === 'Latest First') {
             booksSection.prepend(div);
         } else {
             booksSection.append(div);
         }
     });
     removeButtons = document.querySelectorAll(
-        `[class="remove button is-danger"]`
+        `[class="remove button is-danger"]`,
     );
     completeButtons = document.querySelectorAll(
-        `[class="completed button is-primary"]`
+        `[class="completed button is-primary"]`,
     );
     increaseButtons = document.querySelectorAll(`[class="button increase"]`);
     decreaseButtons = document.querySelectorAll(`[class="button decrease"]`);
@@ -102,26 +102,26 @@ function updateLibrary() {
     increaseDecrease();
 }
 
-submitButton.addEventListener("click", () => {
+submitButton.addEventListener('click', () => {
     addBookToLibrary(
         titleInput.value,
         authorInput.value,
         totalPages.value,
         readPages.value,
-        coverLink.value
+        coverLink.value,
     );
-    titleInput.value = "";
-    authorInput.value = "";
-    totalPages.value = "";
-    readPages.value = "";
-    coverLink.value = "";
+    titleInput.value = '';
+    authorInput.value = '';
+    totalPages.value = '';
+    readPages.value = '';
+    coverLink.value = '';
     updateLibrary();
 });
 
 function removeBook() {
     removeButtons.forEach((button) => {
-        let buttonData = button.getAttribute("data-book-name");
-        button.addEventListener("click", () => {
+        let buttonData = button.getAttribute('data-book-name');
+        button.addEventListener('click', () => {
             myLibrary = myLibrary.filter((book) => book.title !== buttonData);
             updateLibrary();
         });
@@ -130,8 +130,8 @@ function removeBook() {
 
 function completeBook() {
     completeButtons.forEach((button) => {
-        let buttonData = button.getAttribute("data-book-name");
-        button.addEventListener("click", () => {
+        let buttonData = button.getAttribute('data-book-name');
+        button.addEventListener('click', () => {
             myLibrary.forEach((book) => {
                 if (book.title === buttonData) {
                     book.readPages = book.numOfPages;
@@ -144,8 +144,8 @@ function completeBook() {
 
 function increaseDecrease() {
     increaseButtons.forEach((button) => {
-        let buttonData = button.getAttribute("data-book-name");
-        button.addEventListener("click", () => {
+        let buttonData = button.getAttribute('data-book-name');
+        button.addEventListener('click', () => {
             myLibrary.forEach((book) => {
                 if (book.title === buttonData) {
                     book.readPages++;
@@ -156,8 +156,8 @@ function increaseDecrease() {
     });
 
     decreaseButtons.forEach((button) => {
-        let buttonData = button.getAttribute("data-book-name");
-        button.addEventListener("click", () => {
+        let buttonData = button.getAttribute('data-book-name');
+        button.addEventListener('click', () => {
             myLibrary.forEach((book) => {
                 if (book.title === buttonData) {
                     book.readPages--;
