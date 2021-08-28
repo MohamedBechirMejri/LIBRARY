@@ -101,23 +101,7 @@ function updateLibrary() {
     removeBook();
     increaseDecrease();
 }
-/*
-submitButton.addEventListener("click", () => {
-    addBookToLibrary(
-        titleInput.value,
-        authorInput.value,
-        totalPages.value,
-        readPages.value,
-        coverLink.value
-    );
-    titleInput.value = "";
-    authorInput.value = "";
-    totalPages.value = "";
-    readPages.value = "";
-    coverLink.value = "";
-    updateLibrary();
-});
-*/
+
 const clickSubmitButton = () => {
     addBookToLibrary(
         titleInput.value,
@@ -135,6 +119,8 @@ const clickSubmitButton = () => {
 };
 
 const form = document.getElementById('form');
+form.addEventListener('submit', clickSubmitButton);
+
 function removeBook() {
     removeButtons.forEach((button) => {
         let buttonData = button.getAttribute('data-book-name');
