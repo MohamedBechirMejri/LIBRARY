@@ -101,7 +101,7 @@ function updateLibrary() {
     removeBook();
     increaseDecrease();
 }
-
+/*
 submitButton.addEventListener("click", () => {
     addBookToLibrary(
         titleInput.value,
@@ -117,7 +117,7 @@ submitButton.addEventListener("click", () => {
     coverLink.value = "";
     updateLibrary();
 });
-
+*/
 function removeBook() {
     removeButtons.forEach((button) => {
         let buttonData = button.getAttribute("data-book-name");
