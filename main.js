@@ -102,7 +102,7 @@ function updateLibrary() {
     increaseDecrease();
 }
 
-submitButton.addEventListener('click', () => {
+const clickSubmitButton = () => {
     addBookToLibrary(
         titleInput.value,
         authorInput.value,
@@ -116,7 +116,10 @@ submitButton.addEventListener('click', () => {
     readPages.value = '';
     coverLink.value = '';
     updateLibrary();
-});
+};
+
+const form = document.getElementById('form');
+form.addEventListener('submit', clickSubmitButton);
 
 function removeBook() {
     removeButtons.forEach((button) => {
