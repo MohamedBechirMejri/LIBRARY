@@ -17,25 +17,12 @@
     <body>
         <form>
             <h1 class="title">My Library</h1>
-            <input class="input" type="text" placeholder="Title" id="title-input" required="required"/>
-            <input class="input" type="text" placeholder="Author" id="author-input" required="required"/>
-            <input class="input" type="number" placeholder="Number Of Pages" min="0" id="number-of-pages" required="required"/>
+            <input class="input" type="text" placeholder="Title" id="title-input" required />
+            <input class="input" type="text" placeholder="Author" id="author-input" required />
+            <input class="input" type="number" placeholder="Number Of Pages" min="0" id="number-of-pages" required />
             <input class="input" type="number" placeholder="Pages Read (Optional)" min="0" id="pages-read" />
             <input id="cover-link" class="input" type="text" placeholder="Link to Cover Image (Optional)" />
-            <button class="button is-primary is-outlined" id="submit-button" onclick(() => {    
-                addBookToLibrary(
-        titleInput.value,
-        authorInput.value,
-        totalPages.value,
-        readPages.value,
-        coverLink.value
-    );
-    titleInput.value = "";
-    authorInput.value = "";
-    totalPages.value = "";
-    readPages.value = "";
-    coverLink.value = "";
-    updateLibrary();})>
+            <button class="button is-primary is-outlined" id="submit-button" onclick="clickSubmitButton()">
                 Add Book
             </button>
             <div class="select">
