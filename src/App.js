@@ -1,13 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import Home from "./Components/Home";
-import React, { useContext } from "react";
+import { useState } from "react";
+import Header from "./Components/Header";
+
 const App = () => {
+  const [isAddingBook, setIsAddingBook] = useState(false);
+
   return (
     <div className="">
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Header isAddingBook={isAddingBook} setIsAddingBook={setIsAddingBook} />
     </div>
   );
 };
