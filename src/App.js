@@ -51,7 +51,13 @@ const App = () => {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen">
       <Header isAddingBook={isAddingBook} setIsAddingBook={setIsAddingBook} />
-      {isAddingBook && <AddBook books={books} setBooks={setBooks} />}
+      {isAddingBook && (
+        <AddBook
+          books={books}
+          setBooks={setBooks}
+          setIsAddingBook={setIsAddingBook}
+        />
+      )}
       {!isAddingBook && <Books books={books} setBooks={setBooks} />}
     </div>
   );

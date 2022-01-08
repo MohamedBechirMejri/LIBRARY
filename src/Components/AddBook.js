@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddBook = () => { 
+const AddBook = (props) => {
   const [book, setBook] = useState({
     title: "",
     author: "",
@@ -73,7 +73,8 @@ const AddBook = () => {
           type="submit"
           className="border-[#00d1b2] rounded border-2 text-[#00d1b2] hover:bg-[#00d1b2] hover:text-white duration-500 px-6 py-1 active:scale-95"
           onClick={(e) => {
-            console.log(book);
+            props.setBooks([...props.books, book]);
+            props.setIsAddingBook(false);
             e.preventDefault();
           }}
         >
