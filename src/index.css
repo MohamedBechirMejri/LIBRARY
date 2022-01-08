@@ -20,8 +20,7 @@ html,
 body {
   width: 100vw;
   overflow-x: hidden;
-  background-color: #0e063d;
-  font-family: Roboto;
+  /* background-color: #0e063d; */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
