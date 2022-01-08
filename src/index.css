@@ -38,16 +38,21 @@ input {
   border-color: #009261; */
   outline: none;
   background: white;
-  background: #00926110;
+  background: #00d1b222;
   text-align: center;
   padding: 0.25em 1.25em;
-  transition: all 0.2s;
+  transition: all 0.5s;
   border-radius: 0.75em;
-  color: #009261;
+  color: #00d1b2;
   appearance: none;
 }
 input::placeholder {
-  color: #009261;
+  color: #00d1b2;
+  color: #0005;
+}
+input:focus {
+  border-radius: 1.5em;
+  background: #00d1b255;
 }
 label {
   font-size: 1em;
