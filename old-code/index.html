@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>LIBRARY</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAWX29AFF1lABwqs4AJiDJAD1OVwAoKMYAZHeIAGh9fwBsfX8AU2uAAC4u2AACAwEAf7nXAIObogAGBAQAY3B0ACg0OAA2NdsAhb7dAHiOhQAJBhMAAw0fACAhJACUwNEALVJ/AFBkdQCOwuAAiqi3ACUmKgAvPVMAfLXVACQnNgBvhIMALzXKAH641QBspMcASk7VAEZZcAA1N9AAdYiPABs1aQAwOTYAk8XYAFZsagB8mJsAIiouAHq41gApQ10AgrDQAHu41gCKjpgAXIurADI11ABwpsUAhLzZADxNTgA4N9oAdqvCADo51wBflroALjc6AC83OgA6P9cAeZGQACgryQBRhKkAQVFaAGx/dgB/lZwALS7SAH2XogBnp8kAkLC/AD1GQwAxNNsAgbzaAJiyvAApTXMAcq/PAEJOUgCTv9oAmMHOACkn0AAJDx8ANT1EAJSpqwAwR0cAhLXPAIK20gCBt9UABAICAIOcoABzorsAhLrVAFqTswAxNDwAiqiyAH2RkgAtL7wAk8beAEFF2QB+lJsAV4qrAIOWmACVyOQALzHUAH253ABKUdAAVXaCAEx3lwCHt9YAZZKxACo8OgAoLsMAKibPAI3E4gBahKMAe5WfAC0t0gDr+fcAfLfXADJDTwBhjZoAgbfXAHGEiABKepgAcYiLAEdiYwBtpskAJR2+AHCLlAB1ipEAh6OlAGWTtQBodYAAFSU/AGyTtQB3kqAAobrOACwv0AAwLNkAf5mjAIC40gCBudUAAwQCAGepygCAuNsAaKfNADlMUACMnqAAZZSwAFFfbQB5kZUAQ1BTAFZrbQAdKDcANll3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAX0hVg0dhYxUGUIFUFgAAV09nECuZlnI/apFrG5IAAHEvNkktQChBjEsMcCMNAAAqMlhFRFaVBHcLD4ZvaQAAPpA6ByyEOIJGjVt5UVkAAENaXRQcTQhzNVMdkzd8AAAwXnUYXAptASISPTRkfgAAAo97fYWLGp07OWAfdJcAAIlMjiGamIeIJ2WcJDFuAABCE4BoZlKbHmwlD5QDPAAAJk4RYg5/SgAAAAApGRcAAAAAAAl2igUAAAAAAAAAAAAAAAAgLnozAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP3/AADAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgPEAAPD/AADw/wAA//8AAP//AAA="
+            rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" />
+        <link rel="stylesheet" href="main.css" />
+    </head>
+
+    <body>
+        <form id="form">
+            <h1 class="title">My Library</h1>
+            <input class="input" type="text" placeholder="Title" id="title-input" required />
+            <input class="input" type="text" placeholder="Author" id="author-input" required />
+            <input class="input" type="number" placeholder="Number Of Pages" min="0" id="number-of-pages" required />
+            <input class="input" type="number" placeholder="Pages Read (Optional)" min="0" id="pages-read" />
+            <input id="cover-link" class="input" type="text" placeholder="Link to Cover Image (Optional)" />
+            <button class="button is-primary is-outlined" id="submit-button">
+                Add Book
+            </button>
+            <div class="select">
+                <label for="sort">Sort Books:</label>
+                <select name="sort" id="sort-books">
+                    <option value="">Latest First</option>
+                    <option value="">Oldest First</option>
+                </select>
+            </div>
+            <div id="login" style="display: none">
+                <label for="login">Save to Cloud:</label>
+                <button class="button is-light">Sign In</button>
+            </div>
+            <footer class="footer">
+                This project was made by
+                <a href="https://github.com/MohamedBechirMejri" class="tag is-link is-light" target="_blank">
+                    Mohamed Bechir</a>
+                in 2021 while studying with
+                <a href="https://theodinproject.com" class="tag is-link is-light is-warning" target="_blank">The Odin
+                    Project.</a>
+                <br />
+                <a href="https://github.com/MohamedBechirMejri/LIBRARY" class="tag is-link is-light is-info"
+                    target="_blank">Source Code.</a>
+            </footer>
+        </form>
+        <div id="books-section">
+            <p id="empty">Empty</p>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+
+</html>
