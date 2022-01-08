@@ -14,10 +14,27 @@ const Books = (props) => {
             <p>{book.pages} pages</p>
             <p>{book.isFinished ? "Read" : "Not Read"}</p>
             <div className="flex gap-2">
-              <button className="px-6 py-1 text-blue-500 duration-500 border-2 border-blue-500 rounded hover:bg-blue-500 hover:text-white active:scale-95">
-                Read
+              <button
+                className="px-6 py-1 text-blue-500 duration-500 border-2 border-blue-500 rounded hover:bg-blue-500 hover:text-white active:scale-95"
+                onClick={() => {
+                  props.setBooks(
+                    props.books.map((b) => {
+                      if (b === book) b.isFinished = !b.isFinished;
+                      return b;
+                    })
+                  );
+                }}
+              >
+                {book.isFinished ? "Unread" : "Read"}
               </button>
-              <button className="px-6 py-1 text-red-500 duration-500 border-2 border-red-500 rounded hover:bg-red-500 hover:text-white active:scale-95">
+              <button
+                className="px-6 py-1 text-red-500 duration-500 border-2 border-red-500 rounded hover:bg-red-500 hover:text-white active:scale-95"
+                onClick={() => {
+                  props.setBooks(
+                    props.books.filter((b) => b !== book)
+                  );
+                }}
+              >
                 Delete
               </button>
             </div>
