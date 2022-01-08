@@ -2,14 +2,14 @@ const Books = (props) => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 py-6 animate-reveal">
       <h1 className="text-4xl font-extrabold">Books</h1>
-      <div className="flex flex-wrap items-center justify-center gap-6">
+      <div className="flex flex-wrap items-center justify-center w-screen gap-6">
         {props.books.map((book) => (
           <div
             key={book.id}
-            className="flex flex-col items-center justify-center gap-3 p-4 duration-300 rounded-lg shadow-lg hover:scale-105 "
+            className="flex flex-col items-center justify-center gap-3 p-4 text-center duration-300 rounded-lg shadow-lg sm:w-[15%] hover:scale-105"
           >
-            <img src={book.image} alt={book.title} />
-            <h2>{book.title}</h2>
+            <img src={book.image} alt={book.title} className=""/>
+            <h2 className="font-bold">{book.title}</h2>
             <p>by {book.author}</p>
             <p>{book.pages} pages</p>
             <p>{book.isFinished ? "Read" : "Not Read"}</p>
