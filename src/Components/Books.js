@@ -1,3 +1,5 @@
+import uniqid from "uniqid";
+
 const Books = (props) => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 py-6 animate-reveal">
@@ -5,7 +7,7 @@ const Books = (props) => {
       <div className="flex flex-wrap items-center justify-center w-screen gap-6">
         {props.books.map((book) => (
           <div
-            key={book.id}
+            key={uniqid()}
             className="flex flex-col items-center justify-center gap-3 p-4 text-center duration-300 rounded-lg shadow-lg sm:w-[15%] hover:scale-105"
           >
             <img src={book.image} alt={book.title} className="" />
