@@ -18,7 +18,14 @@ const Header = (props) => {
             d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
           />
         </svg>
-        <h1 className="m-0 text-[2em]">Library</h1>{" "}
+        <a
+          href="https://github.com/MohamedBechirMejri/LIBRARY"
+          target={`_blank`}
+          rel="noopener noreferrer"
+          className="m-0 text-[2em]"
+        >
+          Library
+        </a>{" "}
         <div
           className="px-4 py-2 font-bold  border border-white rounded text-white hover:text-[#00d1b2] hover:bg-white transition-all duration-500"
           onClick={() => props.logOut()}
