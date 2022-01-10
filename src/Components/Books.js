@@ -8,7 +8,7 @@ const Books = (props) => {
             key={book.id}
             className="flex flex-col items-center justify-center gap-3 p-4 text-center duration-300 rounded-lg shadow-lg sm:w-[15%] hover:scale-105"
           >
-            <img src={book.image} alt={book.title} className=""/>
+            <img src={book.image} alt={book.title} className="" />
             <h2 className="font-bold">{book.title}</h2>
             <p>by {book.author}</p>
             <p>{book.pages} pages</p>
@@ -30,9 +30,7 @@ const Books = (props) => {
               <button
                 className="px-6 py-1 text-red-500 duration-500 border-2 border-red-500 rounded hover:bg-red-500 hover:text-white active:scale-95"
                 onClick={() => {
-                  props.setBooks(
-                    props.books.filter((b) => b !== book)
-                  );
+                  props.setBooks(props.books.filter((b) => b !== book));
                 }}
               >
                 Delete

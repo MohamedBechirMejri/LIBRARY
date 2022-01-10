@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import AddBook from "./Components/AddBook";
 import Header from "./Components/Header";
 import Books from "./Components/Books";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  addDoc,
+} from "firebase/firestore";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -12,6 +19,13 @@ import {
 } from "firebase/auth";
 
 const App = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   const auth = getAuth();
   const db = getFirestore();
   const logOut = () => {
@@ -24,69 +38,81 @@ const App = (props) => {
 
   const [isAddingBook, setIsAddingBook] = useState(false);
   const [user, setUser] = useState(null);
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      pages: 224,
-      image: "https://picsum.photos/200/300",
-      isFinished: false,
-    },
-    {
-      id: 2,
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      pages: 224,
-      image: "https://picsum.photos/200/300",
-      isFinished: false,
-    },
-    {
-      id: 3,
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      pages: 224,
-      image: "https://picsum.photos/200/300",
-      isFinished: false,
-    },
-    {
-      id: 4,
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      pages: 224,
-      image: "https://picsum.photos/200/300",
-      isFinished: false,
-    },
-    {
-      id: 5,
-      title: "The Subtle Art of Not Giving a F*ck",
-      author: "Mark Manson",
-      pages: 224,
-      image: "https://picsum.photos/200/300",
-      isFinished: false,
-    },
-  ]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4442000);
-  }, []);
+    if (user) {
+      const q = query(collection(db, "books"), where("userId", "==", user.uid));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        if (snapshot.empty) {
+          addDoc(collection(db, "books"), {
+            userId: user.uid,
+            books: [
+              {
+                id: 1,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                pages: 224,
+                image: "https://picsum.photos/200/300",
+                isFinished: false,
+              },
+              {
+                id: 2,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                pages: 224,
+                image: "https://picsum.photos/200/300",
+                isFinished: false,
+              },
+              {
+                id: 3,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                pages: 224,
+                image: "https://picsum.photos/200/300",
+                isFinished: false,
+              },
+              {
+                id: 4,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                pages: 224,
+                image: "https://picsum.photos/200/300",
+                isFinished: false,
+              },
+              {
+                id: 5,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                pages: 224,
+                image: "https://picsum.photos/200/300",
+                isFinished: false,
+              },
+            ],
+          });
+        }
+        const books = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBooks(books[0].books);
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [db, user]);
 
   onAuthStateChanged(auth, (user) => {
     setUser(user);
-    console.log(user);
+    //console.log(user);
   });
   return isLoading ? (
     <h1 className=" font-extrabold uppercase animate-bouncee text-[3em] text-[#00d1b2] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       Loading...
     </h1>
   ) : (
-    <div
-      className="flex flex-col items-center justify-start min-h-screen"
-      onClick={() => console.log(auth)}
-    >
+    <div className="flex flex-col items-center justify-start min-h-screen">
       {user && (
         <Header
           isAddingBook={isAddingBook}
