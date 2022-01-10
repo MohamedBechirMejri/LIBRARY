@@ -19,14 +19,13 @@ import {
 
 const App = (props) => {
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  const [isAddingBook, setIsAddingBook] = useState(false);
+  const [user, setUser] = useState(null);
+  const [books, setBooks] = useState([]);
 
   const auth = getAuth();
   const db = getFirestore();
+
   const logOut = () => {
     auth.signOut();
   };
@@ -35,12 +34,9 @@ const App = (props) => {
     signInWithRedirect(auth, new GoogleAuthProvider());
   };
 
-  const [isAddingBook, setIsAddingBook] = useState(false);
-  const [user, setUser] = useState(null);
-  const [books, setBooks] = useState([]);
-
   useEffect(() => {
     if (user) {
+      setIsLoading(false);
       const unsubscribe = onSnapshot(doc(db, "books", user.uid), (Doc) => {
         if (!Doc.data()) {
           setDoc(doc(db, "books", user.uid), {
@@ -139,14 +135,12 @@ const App = (props) => {
         isAddingBook ? (
           <AddBook
             books={books}
-            setBooks={setBooks}
             setIsAddingBook={setIsAddingBook}
             addBook={addBook}
           />
         ) : (
           <Books
             books={books}
-            setBooks={setBooks}
             toggleBook={toggleBook}
             deleteBook={deleteBook}
           />
