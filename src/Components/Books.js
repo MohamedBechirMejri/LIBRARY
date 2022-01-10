@@ -30,7 +30,8 @@ const Books = (props) => {
               <button
                 className="px-6 py-1 text-red-500 duration-500 border-2 border-red-500 rounded hover:bg-red-500 hover:text-white active:scale-95"
                 onClick={() => {
-                  props.setBooks(props.books.filter((b) => b !== book));
+                  // props.setBooks(props.books.filter((b) => b !== book));
+                  props.deleteBook(book);
                 }}
               >
                 Delete
