@@ -17,6 +17,46 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+const data = {
+  books: [
+    {
+      title: "The Subtle Art of Not Giving a F*ck",
+      author: "Mark Manson",
+      pages: 224,
+      image: "https://picsum.photos/200/300",
+      isFinished: false,
+    },
+    {
+      title: "The Subtle Art of Not Giving a F*ck",
+      author: "Mark Manson",
+      pages: 224,
+      image: "https://picsum.photos/200/300",
+      isFinished: false,
+    },
+    {
+      title: "The Subtle Art of Not Giving a F*ck",
+      author: "Mark Manson",
+      pages: 224,
+      image: "https://picsum.photos/200/300",
+      isFinished: false,
+    },
+    {
+      title: "The Subtle Art of Not Giving a F*ck",
+      author: "Mark Manson",
+      pages: 224,
+      image: "https://picsum.photos/200/300",
+      isFinished: false,
+    },
+    {
+      title: "The Subtle Art of Not Giving a F*ck",
+      author: "Mark Manson",
+      pages: 224,
+      image: "https://picsum.photos/200/300",
+      isFinished: false,
+    },
+  ],
+};
+
 const App = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAddingBook, setIsAddingBook] = useState(false);
@@ -25,6 +65,10 @@ const App = (props) => {
 
   const auth = getAuth();
   const db = getFirestore();
+
+  onAuthStateChanged(auth, (user) => {
+    setUser(user);
+  });
 
   const logOut = () => {
     auth.signOut();
@@ -39,45 +83,7 @@ const App = (props) => {
       setIsLoading(false);
       const unsubscribe = onSnapshot(doc(db, "books", user.uid), (Doc) => {
         if (!Doc.data()) {
-          setDoc(doc(db, "books", user.uid), {
-            books: [
-              {
-                title: "The Subtle Art of Not Giving a F*ck",
-                author: "Mark Manson",
-                pages: 224,
-                image: "https://picsum.photos/200/300",
-                isFinished: false,
-              },
-              {
-                title: "The Subtle Art of Not Giving a F*ck",
-                author: "Mark Manson",
-                pages: 224,
-                image: "https://picsum.photos/200/300",
-                isFinished: false,
-              },
-              {
-                title: "The Subtle Art of Not Giving a F*ck",
-                author: "Mark Manson",
-                pages: 224,
-                image: "https://picsum.photos/200/300",
-                isFinished: false,
-              },
-              {
-                title: "The Subtle Art of Not Giving a F*ck",
-                author: "Mark Manson",
-                pages: 224,
-                image: "https://picsum.photos/200/300",
-                isFinished: false,
-              },
-              {
-                title: "The Subtle Art of Not Giving a F*ck",
-                author: "Mark Manson",
-                pages: 224,
-                image: "https://picsum.photos/200/300",
-                isFinished: false,
-              },
-            ],
-          });
+          setDoc(doc(db, "books", user.uid), data);
         }
 
         setBooks(Doc.data().books);
@@ -112,9 +118,6 @@ const App = (props) => {
     });
   };
 
-  onAuthStateChanged(auth, (user) => {
-    setUser(user);
-  });
   return isLoading ? (
     <h1 className=" font-extrabold uppercase animate-bouncee text-[3em] text-[#00d1b2] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       Loading...
