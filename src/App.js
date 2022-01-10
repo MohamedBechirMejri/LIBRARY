@@ -123,10 +123,7 @@ const App = (props) => {
       Loading...
     </h1>
   ) : (
-    <div
-      className="flex flex-col items-center justify-start min-h-screen"
-      onClick={() => {}}
-    >
+    <div className="flex flex-col items-center justify-start min-h-screen">
       {user && (
         <Header
           isAddingBook={isAddingBook}
@@ -149,7 +146,7 @@ const App = (props) => {
           />
         )
       ) : (
-        <div className="fixed inset-0 flex flex-col items-center justify-center gap-4   text-[#00d1b2]">
+        <div className="fixed inset-0 flex flex-col items-center justify-center gap-4 text-center  text-[#00d1b2] animate-reveal">
           <h1 className="text-4xl font-extrabold uppercase">
             Welcome to your personal Library
           </h1>
