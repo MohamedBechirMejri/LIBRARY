@@ -8,7 +8,7 @@ const Books = (props) => {
         {props.books.map((book) => (
           <div
             key={uniqid()}
-            className="flex flex-col items-center justify-center gap-3 p-4 text-center duration-300 rounded-lg shadow-lg sm:w-[15%] hover:scale-105"
+            className="flex flex-col items-center justify-center gap-3 p-4 text-center duration-300 rounded-lg shadow-lg 2xl:w-[15%] hover:scale-105"
           >
             <img src={book.image} alt={book.title} className="" />
             <h2 className="font-bold">{book.title}</h2>
