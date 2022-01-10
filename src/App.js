@@ -79,6 +79,10 @@ const App = (props) => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    
     if (user) {
       setIsLoading(false);
       const unsubscribe = onSnapshot(doc(db, "books", user.uid), (Doc) => {
