@@ -4,11 +4,10 @@ import Header from "./Components/Header";
 import Books from "./Components/Books";
 import {
   getFirestore,
-  collection,
   onSnapshot,
-  query,
-  where,
-  addDoc,
+  setDoc,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -42,11 +41,9 @@ const App = (props) => {
 
   useEffect(() => {
     if (user) {
-      const q = query(collection(db, "books"), where("userId", "==", user.uid));
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        if (snapshot.empty) {
-          addDoc(collection(db, "books"), {
-            userId: user.uid,
+      const unsubscribe = onSnapshot(doc(db, "books", user.uid), (Doc) => {
+        if (!Doc.data()) {
+          setDoc(doc(db, "books", user.uid), {
             books: [
               {
                 id: 1,
@@ -91,11 +88,8 @@ const App = (props) => {
             ],
           });
         }
-        const books = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setBooks(books[0].books);
+
+        setBooks(Doc.data().books);
       });
       return () => {
         unsubscribe();
@@ -103,16 +97,42 @@ const App = (props) => {
     }
   }, [db, user]);
 
+  const addBook = (b) => {
+    updateDoc(doc(db, "books", user.uid), {
+      books: [
+        ...books,
+        {
+          ...b,
+        },
+      ],
+    });
+  };
+  const deleteBook = (b) => {
+    updateDoc(doc(db, "books", user.uid), {
+      books: books.filter((book) => book !== b),
+    });
+  };
+  const toggleBook = (b) => {
+    updateDoc(doc(db, "books", user.uid), {
+      books: books.map((book) => {
+        if (book === b) book.isFinished = !book.isFinished;
+        return book;
+      }),
+    });
+  };
+
   onAuthStateChanged(auth, (user) => {
     setUser(user);
-    //console.log(user);
   });
   return isLoading ? (
     <h1 className=" font-extrabold uppercase animate-bouncee text-[3em] text-[#00d1b2] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       Loading...
     </h1>
   ) : (
-    <div className="flex flex-col items-center justify-start min-h-screen">
+    <div
+      className="flex flex-col items-center justify-start min-h-screen"
+      onClick={() => {}}
+    >
       {user && (
         <Header
           isAddingBook={isAddingBook}
@@ -126,9 +146,15 @@ const App = (props) => {
             books={books}
             setBooks={setBooks}
             setIsAddingBook={setIsAddingBook}
+            addBook={addBook}
           />
         ) : (
-          <Books books={books} setBooks={setBooks} />
+          <Books
+            books={books}
+            setBooks={setBooks}
+            toggleBook={toggleBook}
+            deleteBook={deleteBook}
+          />
         )
       ) : (
         <div className="fixed inset-0 flex flex-col items-center justify-center gap-4   text-[#00d1b2]">
