@@ -17,7 +17,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "uniqid": "^5.4.0"
-  },
+  }, 
   "homepage": "https://mohamedbechirmejri.github.io/LIBRARY/",
   "scripts": {
     "predeploy": "npm run build",
